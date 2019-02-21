@@ -4,7 +4,6 @@ import "firebase/firestore";
 import { reactReduxFirebase, firebaseReducer } from "react-redux-firebase";
 import { reduxFirestore, firestoreReducer } from "redux-firestore";
 // Reducers
-// @todo
 
 const firebaseConfig = {
   apiKey: "AIzaSyAxAfjPy7UjtkjNYI9IsD1gf-mQ8Z_3-4s",
@@ -21,11 +20,11 @@ const rrfConfig = {
   useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
 };
 
-// init firebase instance
-firebase.initializeApp(firebaseConfirg);
+firebase.initializeApp(firebaseConfig);
 // Init firestore
 const firestore = firebase.firestore();
 
+// Add reactReduxFirebase enhancer when making store creator
 const createStoreWithFirebase = compose(
   reactReduxFirebase(firebase, rrfConfig), // firebase instance as first argument
   reduxFirestore(firebase)
@@ -41,6 +40,7 @@ const initialState = {};
 
 // create store
 
+// Create store
 const store = createStoreWithFirebase(
   rootReducer,
   initialState,
